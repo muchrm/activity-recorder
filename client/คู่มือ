@@ -1,0 +1,16 @@
+สำหรับการใช้งานฝั่ง client นั้น
+ความต้องการของโปรแกรม
+Xcode vr.7.2 ขึ้นไป
+libraly realmswift 1.0 ขึ้นไป
+
+การทำงานทางด้านการเก็บข้อมูลเซนเซอร์ จะทำงานในส่วนของ watchkit app  อยู่ในคลาส coremotion
+มีฟังก์ชันหลักคือ 
+1.createaccelerometer
+ทำหน้าที่ในการเริ่มเก็บข้อมูลเซนเซอร์ จากนั้นส่งไปยัง iphone ผ่าน wccsession sentmessage โดยข้อมูลที่จะส่งจะอยู่ในรูปแบบของ อาเรย์
+2. stopaccelerometer
+ทำหน้าที่ในการหยุดการทำงานของระบบเก็บข้อมูลเซนเซอร์
+
+ฝั่ง iphone จะรับข้อมูลใน appdelegate โดยจะ implement ตัวเองเป็น WCSessionDelegate 
+รับข้อมูลผ่านทาง func session(session: WCSession, didReceiveMessage message: [String : AnyObject])
+จากนั้นจะส่งต่อไปยัง datacontrol ที่ทำหน้าที่ในการจัดเก็บข้อมูลเข้าไว้ในดาต้าเบส realmswift
+
